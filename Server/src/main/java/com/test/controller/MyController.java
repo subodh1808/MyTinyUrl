@@ -18,10 +18,10 @@ public class MyController {
     @Autowired
     UrlRepository urlRepository;
 
-    @RequestMapping("/")
-    public String index() {
-        return "Greetings from Spring Boot!";
-    }
+//    @RequestMapping("/")
+//    public String index() {
+//        return "Greetings from Spring Boot!";
+//    }
 
     @RequestMapping("/*")
     public String processForm(HttpServletRequest request)

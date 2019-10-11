@@ -18,24 +18,27 @@ public class MyRestController {
     @Autowired
     UrlRepository urlRepository;
 
-    //@GetMapping(value = "/create")
-    public ResponseEntity <String> getUrl(String url){
-        System.out.println("Input Url:" +url);
-        String shortUrl="TestUrl";
+    @GetMapping(value = "/create")
+    public ResponseEntity<String> createShortUrlGetMapping(String url) {
+        String shortUrl = createShortUrl(url);
         return new ResponseEntity(shortUrl, HttpStatus.OK);
     }
 
     @PostMapping(value = "/create")
-    public ResponseEntity <String> createShortUrl(String url){
-        System.out.println("Input Url:" +url);
+    public ResponseEntity<String> createShortUrlPostMapping(String url) {
+        String shortUrl = createShortUrl(url);
+        return new ResponseEntity(shortUrl, HttpStatus.OK);
+    }
+
+    private String createShortUrl(String url) {
+        System.out.println("Input Url:" + url);
 
         //Check if valid URL
 
         String key = KeyManagementService.getNewKey();
         UrlMapping urlMapping = new UrlMapping(1l, url, key);
         urlRepository.save(urlMapping);
-
-        String shortUrl="localhost:8080/"+key;
-        return new ResponseEntity(shortUrl, HttpStatus.OK);
+        return "localhost:8080/" + key;
     }
+
 }
