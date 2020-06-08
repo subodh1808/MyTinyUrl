@@ -30,6 +30,13 @@ public class MyRestController {
         return new ResponseEntity(shortUrl, HttpStatus.OK);
     }
 
+
+    @GetMapping(value = "/create/{url}")
+    public ResponseEntity<String> createShortUrl1(@PathVariable String url ) {
+        String shortUrl = createShortUrl(url);
+        return new ResponseEntity(shortUrl, HttpStatus.OK);
+    }
+
     private String createShortUrl(String url) {
         System.out.println("Input Url:" + url);
 
